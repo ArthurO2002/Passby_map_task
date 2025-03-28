@@ -1,18 +1,16 @@
-import {
-  IconButton,
-  InputAdornment,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { IconButton, InputAdornment, MenuItem, Select } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useController, useFormContext } from "react-hook-form";
 import { useDataContext } from "../../../../context/DataContext";
 import { useEffect, useState } from "react";
 import { Close } from "@mui/icons-material";
 
-const TenantType = () => {
-  const { control } = useFormContext();
+interface TenantTypeProps {
+  value: string;
+  onChange: (value: string, id: string) => void;
+  id: string;
+}
+
+const TenantType = ({ value, onChange, id }: TenantTypeProps) => {
   const { data } = useDataContext();
   const [tenantOptions, setTenantOptions] = useState<string[]>([]);
 
@@ -23,21 +21,17 @@ const TenantType = () => {
     setTenantOptions(options);
   }, [data]);
 
-  const { field } = useController({
-    name: "tenant_type",
-    control,
-  });
-
   return (
     <Grid component="div" sx={{ width: "50%" }}>
       <Select
         fullWidth
         size="small"
-        {...field}
+        value={value}
+        onChange={(event) => onChange(event.target.value, id)}
         endAdornment={
-          field.value && (
+          value && (
             <InputAdornment position="end">
-              <IconButton size="small" onClick={() => field.onChange("")}>
+              <IconButton size="small" onClick={() => onChange("", id)}>
                 <Close />
               </IconButton>
             </InputAdornment>

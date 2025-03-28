@@ -184,7 +184,11 @@ const Filters = () => {
                       })}
                     </Select>
                     {filter.key === "tenant_type" ? (
-                      <TenantType />
+                      <TenantType
+                        value={filter.value}
+                        onChange={onFilterValueChange}
+                        id={filter.id}
+                      />
                     ) : (
                       <Input
                         value={filter.value}

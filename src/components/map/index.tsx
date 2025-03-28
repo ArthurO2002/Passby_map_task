@@ -8,7 +8,8 @@ import IconClusterLayer from "../../data/icon-cluster-layer";
 import { useDataContext } from "../../context/DataContext";
 import { MapViewState } from "@deck.gl/core";
 
-const BASIC_STYLE = "https://tiles.stadiamaps.com/styles/alidade_smooth.json";
+const BASIC_STYLE =
+  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
 interface TooltipProps {
   x: number;
@@ -23,8 +24,6 @@ const MapComponent = () => {
   const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
 
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
-
-  console.log(process.env.REACT_APP_MAPBOX_TOKEN);
 
   const layer = new IconClusterLayer({
     ...layerProps,

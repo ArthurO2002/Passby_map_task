@@ -24,6 +24,8 @@ const MapComponent = () => {
 
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
+  console.log(process.env.REACT_APP_MAPBOX_TOKEN);
+
   const layer = new IconClusterLayer({
     ...layerProps,
     data: filteredData || [],
